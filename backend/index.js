@@ -13,7 +13,7 @@ const conn = db.init();
 const home = require("./routes/home");
 app.use(cors());
 app.use('/', home);
-app.get('/api', (request, response) => {
+app.get('/api/song', (request, response) => {
     let sql = "select * from song";
     conn.query(sql, (error, result) => {
         if (error) {

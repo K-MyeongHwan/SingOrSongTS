@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use('/', home);
 
-app.get('/api', (request :Request, response :Response)=>{
+app.get('/api/song', (request :Request, response :Response)=>{
     let sql = "select * from song";
     conn.query(sql, (error :string, result :JSON)=> {
         if (error) {
