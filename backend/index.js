@@ -24,6 +24,17 @@ app.get('/api/song', (request, response) => {
         }
     });
 });
+app.get('/api/singer/:singerNum', (request, response) => {
+    let sql = "select * from singer where singerNum = " + request.params.singerNum;
+    conn.query(sql, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            response.send(result);
+        }
+    });
+});
 app.listen(port, () => {
     console.log("System : localhost:3000 hosting");
 });
