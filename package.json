@@ -7,8 +7,5 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@vue/cli-plugin-typescript": "~5.0.0"
-  }
+  "description": ""
 }
