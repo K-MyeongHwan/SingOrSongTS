@@ -4,8 +4,8 @@ const mysql = require('mysql2');
 const db_info = {
     host: "localhost",
     port: "3306",
-    user: "kmhUser",
-    password: "Rlaaudghks01!",
+    user: "",
+    password: "",
     database: "sosDB"
 };
 module.exports = {
