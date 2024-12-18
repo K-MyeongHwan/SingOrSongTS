@@ -36,6 +36,17 @@ app.get('/api/singer/:singerNum', (request :Request, response :Response)=>{
     })
 })
 
+app.get('/api/category/:categoryNum', (request :Request, response :Response)=>{
+    let sql = "select * from category where categoryNum =" + request.params.categoryNum;
+    conn.query(sql, (error :string, result :JSON) =>{
+        if(error) {
+            console.log(error);
+        } else {
+            response.send(result);
+        }
+    })
+})
+
 app.listen(port, ()=>{
     console.log("System : localhost:3000 hosting");
 });

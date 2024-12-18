@@ -35,6 +35,17 @@ app.get('/api/singer/:singerNum', (request, response) => {
         }
     });
 });
+app.get('/api/category/:categoryNum', (request, response) => {
+    let sql = "select * from category where categoryNum =" + request.params.categoryNum;
+    conn.query(sql, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            response.send(result);
+        }
+    });
+});
 app.listen(port, () => {
     console.log("System : localhost:3000 hosting");
 });
