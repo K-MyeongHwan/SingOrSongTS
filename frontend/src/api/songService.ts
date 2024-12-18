@@ -6,3 +6,5 @@ class SongService {
         return apiConfig.get('/api/song')
     }
 }
+
+export default new SongService();

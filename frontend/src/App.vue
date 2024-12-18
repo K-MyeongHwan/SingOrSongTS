@@ -1,7 +1,9 @@
 <template>
-  <Header />
-  <router-view></router-view>
-  <Footer />
+  <Header/>
+  <div class="d-flex flex-column min-vh-100">
+    <router-view></router-view>
+  </div>
+  <Footer/>
 </template>
 
 <script lang="ts">
@@ -10,7 +12,7 @@ import Header from "@/layout/Header.vue";
 
 export default {
 
-  components : {
+  components: {
     Header, Footer
   }
 }
@@ -23,6 +25,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
