@@ -5,10 +5,13 @@ import SongService from "@/api/songService";
 import {ClickRowArgument} from "vue3-easy-data-table";
 import SingerService from "@/api/singerService";
 import CategoryService from "@/api/categoryService";
-import Category from "@/types/Category";
+import Chart_UserByPlat from "./Chart_UserByPlat.vue";
 
 export default {
   name: 'Main',
+  components : {
+    Chart_UserByPlat
+  },
   setup() {
     const headers = ref([
       {text: "곡 번호", value: "songNum"},
@@ -111,6 +114,29 @@ export default {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3> 유저 분포도 ( 플랫폼 별 ) </h3>
+          </div>
+          <div class="card-body">
+            <Chart_UserByPlat />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3> 유저 분포도 ( 나이 별 ) </h3>
+          </div>
+          <div class="card-body">
+
           </div>
         </div>
       </div>

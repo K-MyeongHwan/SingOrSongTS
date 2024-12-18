@@ -47,6 +47,28 @@ app.get('/api/category/:categoryNum', (request :Request, response :Response)=>{
     })
 })
 
+app.get('/api/platform', (request :Request, response :Response)=>{
+    let sql ="select * from platform";
+    conn.query(sql, (error :string, result :JSON)=>{
+        if(error) {
+            console.log(error);
+        } else {
+            response.send(result);
+        }
+    })
+})
+
+app.post('/api/platform/:platId', (request :Request, response :Response)=>{
+    let sql = "select count(userId) as userCount from user where platId = " + request.params.platId;
+    conn.query(sql, (error :string, result :JSON)=>{
+        if(error) {
+            console.log(error);
+        } else {
+            response.send(result);
+        }
+    })
+})
+
 app.listen(port, ()=>{
     console.log("System : localhost:3000 hosting");
 });

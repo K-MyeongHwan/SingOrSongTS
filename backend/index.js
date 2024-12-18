@@ -46,6 +46,28 @@ app.get('/api/category/:categoryNum', (request, response) => {
         }
     });
 });
+app.get('/api/platform', (request, response) => {
+    let sql = "select * from platform";
+    conn.query(sql, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            response.send(result);
+        }
+    });
+});
+app.post('/api/platform/:platId', (request, response) => {
+    let sql = "select count(userId) as userCount from user where platId = " + request.params.platId;
+    conn.query(sql, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            response.send(result);
+        }
+    });
+});
 app.listen(port, () => {
     console.log("System : localhost:3000 hosting");
 });
