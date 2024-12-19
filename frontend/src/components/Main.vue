@@ -6,11 +6,13 @@ import {ClickRowArgument} from "vue3-easy-data-table";
 import SingerService from "@/api/singerService";
 import CategoryService from "@/api/categoryService";
 import Chart_UserByPlat from "./Chart_UserByPlat.vue";
+import Chart_UserByBirth from "./Chart_UserByBirth.vue";
 
 export default {
   name: 'Main',
   components : {
-    Chart_UserByPlat
+    Chart_UserByPlat,
+    Chart_UserByBirth
   },
   setup() {
     const headers = ref([
@@ -136,7 +138,7 @@ export default {
             <h3> 유저 분포도 ( 나이 별 ) </h3>
           </div>
           <div class="card-body">
-
+            <Chart_UserByBirth/>
           </div>
         </div>
       </div>

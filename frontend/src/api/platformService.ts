@@ -5,7 +5,7 @@ class PlatformService {
     getPlatformList() :Promise<Platform[]> {
         return apiConfig.get('/api/platform')
     }
-    getUserCountByPlatId(platId :number) :Promise<Number[]> {
+    getUserCountByPlatId(platId :number) :Promise<Number> {
         return apiConfig.post(`/api/platform/${platId}`)
     }
 }

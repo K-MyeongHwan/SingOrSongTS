@@ -1,5 +1,5 @@
 <script lang="ts">
-import {onBeforeMount, ref, toRaw} from "vue";
+import {onBeforeMount, onMounted, ref, toRaw} from "vue";
 import {Bar} from "vue-chartjs";
 import Platform from "@/types/Platform";
 import PlatformService from "@/api/platformService";
@@ -14,16 +14,20 @@ export default {
     Bar
   },
   setup() {
-    const platformList = ref<String[]>([]);
-    const loaded = ref<boolean>(false);
+    const platformList = ref<Platform[]>([]);
+    const platformNameList = ref<String[]>([]);
+    const userCountList = ref<number[]>([]);
+    const loaded = ref<Boolean>(false);
 
     let userData = {
-      labels: platformList.value,
+      labels: platformNameList.value,
       datasets: [
         {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [40, 20, 12, 39]
+          label: 'User Count',
+          backgroundColor: ['rgba(255, 205, 86, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+          borderColor : ['rgb(255, 205, 86)', 'rgb(54, 162, 235)','rgb(75, 192, 192)',  'rgb(201, 203, 207)'],
+          borderWidth : 1,
+          data: userCountList.value
         }
       ]
     };
@@ -32,37 +36,41 @@ export default {
       maintainAspectRatio: false
     }
 
-    const getPlatformList = async () => {
-      await PlatformService.getPlatformList().then((response: any) => {
+    const getPlatformData = async () => {
+      await PlatformService.getPlatformList().then(async (response: any) => {
         response.data.map((platform: Platform) => {
-          platformList.value.push(platform.platName);
-        })
+          platformList.value.push(platform);
+          platformNameList.value.push(platform.platName);
+        });
 
-        console.log(platformList.value);
-        loaded.value = true;
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
+        //get userCountData
+        await Promise.all(
+            platformList.value.map(async (platform: Platform) => {
+              await PlatformService.getUserCountByPlatId(platform.platId).then((response :any) => {
+                userCountList.value.push(response.data[0].userCount);
+              })
+            })
+        ).then(()=>{
+          loaded.value = true;
+        });
 
-    const getUserCountByPlatId = async (platId: number) => {
-      await PlatformService.getUserCountByPlatId(platId).then((response) => {
-        console.log(response);
       }).catch((error) => {
         console.log(error);
       })
     }
 
     onBeforeMount(() => {
-      getPlatformList();
-      getUserCountByPlatId(4);
+      getPlatformData()
     });
+
+    onMounted(() => {
+      //loaded.value = true;
+    })
 
     return {
       userData,
       userOptions,
-      platformList,
-      loaded
+      loaded,
     }
   }
 }

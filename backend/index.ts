@@ -69,6 +69,17 @@ app.post('/api/platform/:platId', (request :Request, response :Response)=>{
     })
 })
 
+app.post('/api/user/userBirth', (request :Request, response :Response)=>{
+    let sql = "select userBirth from user"
+    conn.query(sql, (error :string, result :JSON) =>{
+        if(error) {
+            console.log(error);
+        } else {
+            response.send(result);
+        }
+    })
+})
+
 app.listen(port, ()=>{
     console.log("System : localhost:3000 hosting");
 });

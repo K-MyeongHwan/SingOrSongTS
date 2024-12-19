@@ -68,6 +68,17 @@ app.post('/api/platform/:platId', (request, response) => {
         }
     });
 });
+app.post('/api/user/userBirth', (request, response) => {
+    let sql = "select userBirth from user";
+    conn.query(sql, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            response.send(result);
+        }
+    });
+});
 app.listen(port, () => {
     console.log("System : localhost:3000 hosting");
 });
