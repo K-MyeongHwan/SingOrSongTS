@@ -25,8 +25,8 @@ export default {
         {
           label: 'User Count',
           backgroundColor: ['rgba(255, 205, 86, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(201, 203, 207, 0.2)'],
-          borderColor : ['rgb(255, 205, 86)', 'rgb(54, 162, 235)','rgb(75, 192, 192)',  'rgb(201, 203, 207)'],
-          borderWidth : 1,
+          borderColor: ['rgb(255, 205, 86)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)', 'rgb(201, 203, 207)'],
+          borderWidth: 1,
           data: userCountList.value
         }
       ]
@@ -46,11 +46,11 @@ export default {
         //get userCountData
         await Promise.all(
             platformList.value.map(async (platform: Platform) => {
-              await PlatformService.getUserCountByPlatId(platform.platId).then((response :any) => {
+              await PlatformService.getUserCountByPlatId(platform.platId).then((response: any) => {
                 userCountList.value.push(response.data[0].userCount);
               })
             })
-        ).then(()=>{
+        ).then(() => {
           loaded.value = true;
         });
 
@@ -77,9 +77,13 @@ export default {
 </script>
 
 <template>
-  <Bar v-if="loaded" :data="userData" :options="userOptions"/>
+  <div class="myChart">
+    <Bar v-if="loaded" :data="userData" :options="userOptions"/>
+  </div>
 </template>
 
 <style scoped>
-
+.myChart {
+  height: 400px;
+}
 </style>

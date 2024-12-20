@@ -79,9 +79,13 @@ export default {
 </script>
 
 <template>
-  <Doughnut v-if="loaded" :data="userData" :options="userOptions"/>
+  <div class="myChart">
+    <Doughnut v-if="loaded" :data="userData" :options="userOptions"/>
+  </div>
 </template>
 
 <style scoped>
-
+.myChart {
+  height : 400px;
+}
 </style>

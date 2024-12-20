@@ -7,12 +7,14 @@ import SingerService from "@/api/singerService";
 import CategoryService from "@/api/categoryService";
 import Chart_UserByPlat from "./Chart_UserByPlat.vue";
 import Chart_UserByBirth from "./Chart_UserByBirth.vue";
+import KakaoMap_Store from "@/components/KakaoMap_Store.vue";
 
 export default {
   name: 'Main',
   components : {
     Chart_UserByPlat,
-    Chart_UserByBirth
+    Chart_UserByBirth,
+    KakaoMap_Store
   },
   setup() {
     const headers = ref([
@@ -139,6 +141,19 @@ export default {
           </div>
           <div class="card-body">
             <Chart_UserByBirth/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3> 노래방점 위치 정보 </h3>
+          </div>
+          <div class="card-body">
+            <KakaoMap_Store/>
           </div>
         </div>
       </div>
